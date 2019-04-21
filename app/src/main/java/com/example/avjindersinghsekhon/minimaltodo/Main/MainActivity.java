@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.avjindersinghsekhon.minimaltodo.About.AboutActivity;
+import com.example.avjindersinghsekhon.minimaltodo.Analytics.AnalyticsApplication;
 import com.example.avjindersinghsekhon.minimaltodo.AppDefault.AppDefaultActivity;
 import com.example.avjindersinghsekhon.minimaltodo.R;
 import com.example.avjindersinghsekhon.minimaltodo.Settings.SettingsActivity;
@@ -34,6 +35,12 @@ public class MainActivity extends AppDefaultActivity {
     @Override
     protected Fragment createInitialFragment() {
         return MainFragment.newInstance();
+    }
+
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        ((AnalyticsApplication) getApplication()).send(this, "Action", "Menu opened");
+        return true;
     }
 
     @Override

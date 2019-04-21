@@ -2,6 +2,7 @@ package com.example.avjindersinghsekhon.minimaltodo.Analytics;
 
 import android.app.Application;
 import android.content.pm.PackageManager;
+import android.util.Log;
 
 import com.example.avjindersinghsekhon.minimaltodo.R;
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -44,7 +45,25 @@ public class AnalyticsApplication extends Application {
         send(screenName, new HitBuilders.ScreenViewBuilder().build());
     }
 
+    private String serialize(Map<String, String> params) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("{");
+        for (Map.Entry<String, String> param : params.entrySet()) {
+            builder.append("\"")
+                    .append(param.getKey())
+                    .append("\":\"")
+                    .append(param.getValue())
+                    .append("\",");
+        }
+        builder.deleteCharAt(builder.length() - 1)
+                .append("}");
+        return builder.toString();
+    }
+
     private void send(Object screenName, Map<String, String> params) {
+
+        Log.d("MONKEY_EVENT", screenName.getClass() + " " + serialize(params));
+
         if (IS_ENABLED) {
             Tracker tracker = getDefaultTracker();
             tracker.setScreenName(getClassName(screenName));

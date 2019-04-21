@@ -223,6 +223,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                app.send(AddToDoFragment.this, "Input", "Todo text changed");
                 mUserEnteredText = s.toString();
             }
 
@@ -303,6 +304,8 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
             @Override
             public void onClick(View v) {
 
+                app.send(this, "Action", "Date chooser opened");
+
                 Date date;
                 hideKeyboard(mToDoTextBodyEditText);
                 if (mUserToDoItem.getToDoDate() != null) {
@@ -331,6 +334,8 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
         mTimeEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                app.send(this, "Action", "Time chooser opened");
 
                 Date date;
                 hideKeyboard(mToDoTextBodyEditText);

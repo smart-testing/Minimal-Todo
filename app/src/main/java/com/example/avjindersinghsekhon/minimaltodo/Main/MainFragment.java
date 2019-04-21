@@ -577,6 +577,7 @@ public class MainFragment extends AppDefaultFragment {
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        app.send(MainFragment.this, "Action", "Todo item pressed");
                         ToDoItem item = items.get(ViewHolder.this.getAdapterPosition());
                         Intent i = new Intent(getContext(), AddToDoActivity.class);
                         i.putExtra(TODOITEM, item);
