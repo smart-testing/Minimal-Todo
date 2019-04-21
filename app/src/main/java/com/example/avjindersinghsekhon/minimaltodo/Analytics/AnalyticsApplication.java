@@ -2,9 +2,9 @@ package com.example.avjindersinghsekhon.minimaltodo.Analytics;
 
 import android.app.Application;
 import android.content.pm.PackageManager;
-import android.util.Log;
 
 import com.example.avjindersinghsekhon.minimaltodo.R;
+import com.example.avjindersinghsekhon.minimaltodo.Utility.MonkeyLogger;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -62,7 +62,7 @@ public class AnalyticsApplication extends Application {
 
     private void send(Object screenName, Map<String, String> params) {
 
-        Log.d("MONKEY_EVENT", screenName.getClass() + " " + serialize(params));
+        MonkeyLogger.write(screenName.getClass() + " " + serialize(params));
 
         if (IS_ENABLED) {
             Tracker tracker = getDefaultTracker();
